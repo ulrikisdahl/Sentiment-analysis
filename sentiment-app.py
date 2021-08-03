@@ -11,8 +11,8 @@ app = Flask(__name__)
 def home():
     return render_template('index.html')
 
-model_path = '/Users/ulisman/Desktop/model.h5'
-tokenizer_path = '/Users/ulisman/Desktop/tokenizer.pickle'
+model_path = 'model.h5'
+tokenizer_path = 'tokenizer.pickle'
 max_len = 150
 prediction_dict = {0: 'Positive review', 1: 'Negative review'}
 stop_words = set(stopwords.words('english'))
