@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    .navbar {
+        top: 0;
+        bottom: 10;
+        background-color: #DCDCDC;
+        height: 50px;
+        width: 100%;
+        position: fixed;
+        /*margin-left: 150px;*/
+        z-index: 10;
+    }
+    .navbar ul li {
+        float: left;
+        list-style-type: none;
+        width: 100px;
+        text-align: center;
+    }
+    .navbar ul li a {
+        position: RELATIVE;
+        text-decoration: none;
+        line-height: 50px;
+        color: black;
+        display: block;
+        /*margin-left: 20px;*/
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    a:hover:not(.active):not(#reflink) {
+        background-color: grey;
+        color: gold;
+    }
+
+    #inpDiv{
+        margin: 0 auto;
+        /* margin-left: auto;
+        margin-right: auto; */
+    }
+    #inp{
+        width: 500px;
+        height: 23px;
+    }
+    input[type="text"]{
+        font-size:15px;
+    }
+    h1{
+        text-align: center;
+        margin-top: 90px;
+    }
+    #btn{
+        width: 100px;
+        height: 29px;
+        font-size: 16px;
+    }
+    #mainSection{
+        background-color: lightgrey;
+        padding-top: 40px;
+        padding-bottom: 110px;
+        margin-top: 50px;
+        margin-right: -8px;
+        margin-left: -8px;
+        border-radius: 3%;
+    }
+    #explenation{
+        text-align: center;
+        margin-left: 32%;
+        margin-right: 32%;
+        margin-bottom: 45px;
+    }
+    .resultDiv{
+        text-align: center;
+    }
+    p{
+        font-size: 22px;
+        text-align: center;
+        margin-top: 15px;
+    }
+    #gif{
+        border: 1px solid grey;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 50px;
+    }
+
+</style>
+<body>
+    <header>
+        <div id="nav_bar" class="navbar">
+            <ul>
+              <li><a href="">Home</a></li>
+              <li><a href="https://github.com/Ulisman/Sentiment-analysis">Source code</a></li>
+              <li><a href="https://github.com/Ulisman">More</a></li>
+          </div>
+    </header>
+
+    <h1>Sentiment analysis</h1>
+    
+    <section id="mainSection">
+        <h3 id="explenation">This website uses a deep-learning algorithm that evaluates whether a restaurant review is positive or negative. Write a review in the input field below to test it out:</h3>
+        <!-- <img id="gif" src="/static/tutorial-gif.gif" alt=""> -->
+        <img id="gif" src="{{url_for('static', filename='tutorial-gif.gif')}}" alt="">
+        <div style="margin:0 auto" align=center>
+            <input type="text" name="" id="inp" placeholder="Write here">
+            <button id="btn" onclick="pressButton()">Submit</button>
+        </div>
+    
+        <div class="resultDiv">
+
+        </div>
+        
+    </section>
+
+
+
+<script>
+    inp = document.querySelector('#inp')
+    resultDiv = document.querySelector('.resultDiv')
+
+
+    function pressButton(){
+        const options = {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify([inp.value]),
+        }
+
+        main(options)
+    }
+
+    async function main(options){
+        const response = await fetch('/api', options)
+        const data = await response.json()
+
+        resultDiv.innerHTML = `
+            <p>This is a <b> ${data.result} </b><p>
+        `
+    }
+
+</script>
+</body>
+</html>
