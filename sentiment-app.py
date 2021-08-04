@@ -6,9 +6,6 @@ from tensorflow.keras.preprocessing.sequence import pad_sequences
 from flask import Flask, render_template, request, jsonify, after_this_request
 
 app = Flask(__name__)
-@app.route('/')
-def home():
-    return render_template('index.html')
 
 model_path = 'model.h5'
 tokenizer_path = 'tokenizer.pickle'
@@ -42,17 +39,20 @@ def text_to_padded(text):
     return padded_seq
 
 
-#function that listens to 'api' and returns the predictions from the model
-@app.route('/api', methods=['POST', 'GET'])
-def main():
-    data = request.get_json() #respone from client side
+#function that listens to '/' and returns the predictions from the model
+@app.route('/', methods=['POST', 'GET'])
+def home():
+    if request.method == "POST":
+        data = request.get_json() #respone from client side
 
-    padded_sequence = text_to_padded(data)
-    y_pred = model.predict(padded_sequence)
-    y_pred_rounded = round(y_pred[0][0])
-    predicted_sentiment = prediction_dict[y_pred_rounded]
+        padded_sequence = text_to_padded(data)
+        y_pred = model.predict(padded_sequence)
+        y_pred_rounded = round(y_pred[0][0])
+        predicted_sentiment = prediction_dict[y_pred_rounded]
 
-    return jsonify({'result': predicted_sentiment})
+        return jsonify({'result': predicted_sentiment})
+    return render_template('index.html')
+
 
 
 if __name__ == "__main__":
