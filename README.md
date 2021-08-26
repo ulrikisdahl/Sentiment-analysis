@@ -1,5 +1,7 @@
-# Sentiment-analysis
-# This is a sentiment analysis project where the aim is to classify restaurant reviews in to two different categories - positive and negative
+# Health-insurance-prediction
+Predicting health insurance prices based of certain variables
 
 #
-Demo: https://sentiment-analysis-v2.herokuapp.com/ (It takes 30 seconds for the page to load the first time)
+Demo: https://ml-health-insurance-prediction.herokuapp.com/
+
+Dataset: https://www.kaggle.com/mirichoi0218/insurance
