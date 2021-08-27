@@ -3,6 +3,7 @@ This is a sentiment analysis app where the aim is to classify whether a restaura
 
 #
 Demo: http://sentiment-analysis-v2.herokuapp.com/ (It takes 30 seconds for the page to load the first time you click the link)
+Notebook: https://github.com/Ulisman/Sentiment-analysis/blob/main/Sentiment_analysis.ipynb
 
 ## Architecture
 The model uses a LSTM layer (long-short-term-memory) combined with two dense layers (where the second dense layer is the output layer which uses a sigmoid activation function becuase this is a binary classification task)
