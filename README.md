@@ -3,6 +3,7 @@ This is a sentiment analysis app where the aim is to classify whether a restaura
 
 #
 Demo: http://sentiment-analysis-v2.herokuapp.com/ (It takes 30 seconds for the page to load the first time you click the link)
+
 Notebook: https://github.com/Ulisman/Sentiment-analysis/blob/main/Sentiment_analysis.ipynb
 
 ## Architecture
